@@ -1,4 +1,4 @@
-require_relative "issues"
+require "issues"
 
 class Repository
    attr_accessor :closed_issues, :open_issues, :repo
