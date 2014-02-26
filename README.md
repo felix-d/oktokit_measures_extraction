@@ -1,4 +1,4 @@
-oktokit_measures_extraction
+Oktokit measures extraction
 ===========================
 
 Using oktokit library (git hub api) to extract measures from repositories
