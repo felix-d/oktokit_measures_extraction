@@ -1,7 +1,7 @@
 require_relative "issues"
 
 class Repository
-   attr_accessor :closed_issues, :open_issues
+   attr_accessor :closed_issues, :open_issues, :repo
     def initialize(options)
         @repo = options[:repo]
         @client = options[:client]
