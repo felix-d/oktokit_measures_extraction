@@ -62,5 +62,21 @@ module ApiCalls
       return changes_per_commit
   end
 
-end
+  def ApiCalls::changes_p_u(repo, commits)
+      changes_per_user = Hash.new
+      commits.each do |c|
+          current = repo.get_commit(c[:sha])
+          name = current.author 
+          if !(changes_per_user[name].nil?)
+              changes_per_user[name][0] += 1
+          else
+              changes_per_user[name] = [1,0]
+          end
+          current.files.each do |f|
+              changes_per_user[name][1] += f[:changes]
+          end
+      end
+      return changes_per_user
+  end
 
+end

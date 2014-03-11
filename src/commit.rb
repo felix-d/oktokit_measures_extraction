@@ -1,13 +1,15 @@
 class Commit
-    attr_accessor :sha, :commit, :date, :file_changes, :total_changes
+    attr_accessor :sha, :commit, :date, :file_changes, :total_changes, :author, :files
     def initialize(options)
         @client = options[:client]
         @repo = options[:repo]
         @sha = options[:sha]
         @commit = @client.commit(@repo, sha)
+        @files = @commit[:files]
         @file_changes = @commit[:files].size
         @total_changes = getTotalChanges(@commit[:files])
         @date = @commit[:commit][:author][:date]
+        @author = @commit[:commit][:author][:name]
     end
 
     def getTotalChanges(files)
@@ -16,10 +18,6 @@ class Commit
             total += f[:changes]
         end
         return total
-    end
-
-
-    def self.nbOfModifiedFiles(commit)
     end
 end
         

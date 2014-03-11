@@ -40,9 +40,27 @@ module Utils
         file << [(total/commits.size.to_f).round(2)]
     end
 
-    
+    def  Utils::printCPU(file, cpu)
+        cpu.each do |key,value|
+            file << [key, value[0], value[1]]
+        end
+    end
 
+    def  Utils::printACPU(file, cpu)
+        total = 0
+        cpu.each do |key, value|
+            total += value[0]
+        end
+        file << [(total/cpu.size.to_f).round(2)]
+    end
 
+    def  Utils::printALPU(file, cpu)
+        total = 0
+        cpu.each do |key, value|
+            total += value[1]
+        end
+        file << [(total/cpu.size.to_f).round(2)]
+    end
 end
 
 

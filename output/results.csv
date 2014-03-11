@@ -3,6 +3,12 @@ REPOSITORY NAME,fernandezpablo85/scribe-java
 TOTAL CLOSED ISSUES,469
 TOTAL OPEN ISSUES,11
 ##################################
+Dates of the analysis
+v1.1.0-v1.2.0
+2011-01-16 15:45:26 UTC,2011-05-04 14:53:19 UTC
+v1.2.0-v1.3.0
+2011-05-04 14:53:19 UTC,2011-12-16 19:13:57 UTC
+##################################
  Nb of Issues per week v1.1.0-1.2.0
 2011,3,8
 2011,4,4
@@ -55,6 +61,12 @@ v1.1.0-v1.2.0
 4.93
 v1.2.0-v1.3.0
 3.1
+##################################
+Number of commits
+v1.1.0-v1.2.0
+51
+v1.2.0-v1.3.0
+52
 ##################################
 Files modified per commit
 v1.1.0-v1.2.0
@@ -169,7 +181,7 @@ v1.1.0-v1.2.0
 v1.2.0-v1.3.0
 2.1
 ##################################
-Changes per commit
+Changed LOC per commit
 v1.1.0-v1.2.0
 203cf83dc0a48db7b38179026e3849645318249d,97
 7b587c3d1df5fd5637e2610c8a89f9ae85cc8e9f,115
@@ -276,8 +288,48 @@ cc5a0a04719d451b6738ee812135dd720633bb63,1
 543b53475fc271389bfb16bace69af462e85ea41,3
 de1ac1f467cae449437d63d5c2a49e6736d56317,20
 ##################################
-Average of changes per commit
+Average of changed LOC per commit
 v1.1.0-v1.2.0
 35.86
 v1.2.0-v1.3.0
 44.73
+##################################
+Number of committers
+v1.1.0-v1.2.0
+8
+v1.2.0-v1.3.0
+9
+##################################
+Number of commits and changes per user
+v1.1.0-v1.2.0
+Arthur Wang,3,308
+Boris,1,116
+Pablo Fernandez,34,856
+Matthew Laudato,1,30
+Tom Tasche,1,180
+Stuart Grimshaw,3,103
+diegossilveira,7,212
+dustin norlander,1,24
+v1.2.0-v1.3.0
+Phillip Haines,1,113
+softprops,1,95
+Pablo Fernandez,34,1636
+liuce,1,71
+Sripathi Krishnan,3,16
+Chia-Wei Li,7,248
+Scott Scoble,1,2
+Tomas Lin,2,119
+ThePizzle,2,26
+##################################
+Average of commits per user
+v1.1.0-v1.2.0
+6.38
+v1.2.0-v1.3.0
+5.78
+##################################
+Average of LOC changed per user
+v1.1.0-v1.2.0
+228.63
+v1.2.0-v1.3.0
+258.44
+##################################
