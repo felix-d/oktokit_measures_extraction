@@ -24,20 +24,25 @@ module Utils
         end
     end
 
-    def Utils::printAIPW(file, issues)
+    def Utils::printAIPW(issues)
         total = 0
         issues.each do |key,value|
             total += value
         end
-        file << [(total/issues.size.to_f).round(2)]
+        return (total/issues.size.to_f).round(2)
+    end
+
+    def  Utils::printAIPC(issues, commits)
+        return (issues.size/commits.size.to_f).round(2)
     end
     
-    def Utils::printAPC(file, commits)
+    
+    def Utils::printAPC(commits)
         total = 0
         commits.each do |key,value|
             total += value
         end
-        file << [(total/commits.size.to_f).round(2)]
+        return (total/commits.size.to_f).round(2)
     end
 
     def  Utils::printCPU(file, cpu)
@@ -46,21 +51,22 @@ module Utils
         end
     end
 
-    def  Utils::printACPU(file, cpu)
+    def  Utils::printACPU(cpu)
         total = 0
         cpu.each do |key, value|
             total += value[0]
         end
-        file << [(total/cpu.size.to_f).round(2)]
+        return (total/cpu.size.to_f).round(2)
     end
 
-    def  Utils::printALPU(file, cpu)
+    def  Utils::printALPU(cpu)
         total = 0
         cpu.each do |key, value|
             total += value[1]
         end
-        file << [(total/cpu.size.to_f).round(2)]
+        return (total/cpu.size.to_f).round(2)
     end
+
 end
 
 

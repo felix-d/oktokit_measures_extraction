@@ -3,7 +3,7 @@ require "commit"
 
 class Repository
    attr_accessor :closed_issues, :open_issues, :repo, :total_issues,
-       :code_frequencies, :commits_activity
+       :code_frequencies, :commits_activity, :repo
 
     def initialize(options)
         @repo = options[:repo]
@@ -39,6 +39,12 @@ class Repository
         end
         return commits_in_range
     end 
+
+    def self.getDaysOfRange(date1, date2)
+        range = date2 - date1
+        dd = range.div(60).div(60).div(24)
+        return dd
+    end
 end
 
 
