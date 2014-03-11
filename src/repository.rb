@@ -1,4 +1,4 @@
-require "issues"
+require "apicalls"
 require "commit"
 
 class Repository
@@ -8,8 +8,9 @@ class Repository
     def initialize(options)
         @repo = options[:repo]
         @client = options[:client]
-        @closed_issues = Issues::issues(client: @client, repo: @repo, state: "closed")
-        @open_issues = Issues::issues(client: @client, repo: @repo, state: "open")
+        @closed_issues = ApiCalls::issues(client: @client, repo: @repo, state: "closed")
+        @open_issues = ApiCalls::issues(client: @client, repo: @repo, state: "open")
+        @total_commits = ApiCalls::commits(client: @client, repo: @repo)
         @total_issues = @closed_issues.concat(@open_issues)
         @total_issues.sort_by { |issue| issue[:created_at]}
     end    
@@ -29,7 +30,15 @@ class Repository
         return issues_in_range
     end
 
-        
+    def commits_in_range(date1, date2)
+        commits_in_range = Array.new
+        @total_commits.each do |comm|
+            if comm[:commit][:author][:date] < date2 and  comm[:commit][:author][:date] > date1
+                commits_in_range << comm
+            end
+        end
+        return commits_in_range
+    end 
 end
 
 

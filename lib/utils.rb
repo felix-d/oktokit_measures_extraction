@@ -18,6 +18,12 @@ module Utils
         end
     end
 
+    def Utils::printPC(file, commits)
+        commits.each do |key,value|
+            file << [key, value]
+        end
+    end
+
     def Utils::printAIPW(file, issues)
         total = 0
         issues.each do |key,value|
@@ -25,6 +31,16 @@ module Utils
         end
         file << [(total/issues.size.to_f).round(2)]
     end
+    
+    def Utils::printAPC(file, commits)
+        total = 0
+        commits.each do |key,value|
+            total += value
+        end
+        file << [(total/commits.size.to_f).round(2)]
+    end
+
+    
 
 
 end
