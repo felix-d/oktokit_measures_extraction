@@ -1,3 +1,5 @@
+#Class that represents repositories. Gives easy access to repositories' attributes.
+
 require "apicalls"
 require "commit"
 
@@ -15,11 +17,12 @@ class Repository
         @total_issues.sort_by { |issue| issue[:created_at]}
     end    
 
-    
+    #Return full commmit
     def get_commit(sha)
         Commit.new(client: @client, repo: @repo,sha: sha)
     end
 
+    #Get issues of a repo in a specific time lapse
     def issues_in_range(date1, date2)
         issues_in_range = Array.new
         @total_issues.each do |iss|
@@ -30,6 +33,7 @@ class Repository
         return issues_in_range
     end
 
+    #Get commits of a repo in a specific time lapse
     def commits_in_range(date1, date2)
         commits_in_range = Array.new
         @total_commits.each do |comm|
@@ -40,11 +44,6 @@ class Repository
         return commits_in_range
     end 
 
-    def self.getDaysOfRange(date1, date2)
-        range = date2 - date1
-        dd = range.div(60).div(60).div(24)
-        return dd
-    end
 end
 
 

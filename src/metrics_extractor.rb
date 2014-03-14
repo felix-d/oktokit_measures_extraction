@@ -1,3 +1,8 @@
+#GITHUB METRICS EXTRACTOR
+#AUTHOR: DESCOTEAUX, FELIX
+#
+#Using Oktokit library
+#
 #!/usr/bin/env ruby
 $:.unshift(File.dirname(__FILE__),"#{File.dirname(__FILE__)}/../lib")
 require 'bundler/setup'
@@ -24,10 +29,11 @@ version110 = tp2_repo.get_commit("380d858b13f21461ff278333a79d0a8dcecdb395")
 version120 = tp2_repo.get_commit("97f45d75e76e45bd24ec810a90dffee793020a6a")
 version130 = tp2_repo.get_commit("0a63f935d231eb50ba9db52c0735fbcb96e7589c")
 
-days_11_12 = Repository.getDaysOfRange(version110.date,version120.date).to_s
-days_12_13 = Repository.getDaysOfRange(version120.date,version130.date).to_s
 
-Repository.getDaysOfRange(version110.date,version120.date)
+#Get the number of days for time lapse
+days_11_12 = Utils::getDaysOfRange(version110.date,version120.date).to_s
+days_12_13 = Utils::getDaysOfRange(version120.date,version130.date).to_s
+
 #remplissage des tableaux
 puts "Getting issues..."
 issues_11_12 = tp2_repo.issues_in_range(version110.date,version120.date)
@@ -76,9 +82,9 @@ CSV.open("../output/detailed_results.csv", 'w') do |f|
     Utils::printLine(f)
 
     f << [" Nb of Issues per week v1.1.0-1.2.0"]
-    Utils::printIPW(f,issues_per_week_110_120)
+    Utils::getIPW(f,issues_per_week_110_120)
     f << ["Nb of Issues per week v1.2.0-1.3.0"]
-    Utils::printIPW(f,issues_per_week_120_130)
+    Utils::getIPW(f,issues_per_week_120_130)
     Utils::printLine(f)
 
     f << ["Number of commits"]
@@ -89,16 +95,16 @@ CSV.open("../output/detailed_results.csv", 'w') do |f|
 
     f << ["average of issues per week"]
     f << ["v1.1.0-v1.2.0"]
-    f << [Utils::printAIPW(issues_per_week_110_120)]
+    f << [Utils::getAIPW(issues_per_week_110_120)]
     f << ["v1.2.0-v1.3.0"]
-    f << [ Utils::printAIPW(issues_per_week_120_130)]
+    f << [ Utils::getAIPW(issues_per_week_120_130)]
     Utils::printLine(f)
 
     f << ["average of issues per commit"]
     f << ["v1.1.0-v1.2.0"]
-    f << [ Utils::printAIPC(issues_11_12, commits_11_12)]
+    f << [ Utils::getAIPC(issues_11_12, commits_11_12)]
     f << ["v1.2.0-v1.3.0"]
-    f << [ Utils::printAIPC(issues_12_13, commits_12_13)]
+    f << [ Utils::getAIPC(issues_12_13, commits_12_13)]
     Utils::printLine(f)
 
     f << ["Number of commits"]
@@ -117,9 +123,9 @@ CSV.open("../output/detailed_results.csv", 'w') do |f|
 
     f << ["Average of files per commit"]
     f << ["v1.1.0-v1.2.0"]
-    f << [  Utils::printAPC(files_per_commit_11_12)]
+    f << [  Utils::getAPC(files_per_commit_11_12)]
     f << ["v1.2.0-v1.3.0"]
-    f << [ Utils::printAPC(files_per_commit_12_13)]
+    f << [ Utils::getAPC(files_per_commit_12_13)]
     Utils::printLine(f)
 
 
@@ -132,9 +138,9 @@ CSV.open("../output/detailed_results.csv", 'w') do |f|
 
     f << ["Average of changed LOC per commit"]
     f << ["v1.1.0-v1.2.0"]
-    f << [ Utils::printAPC(changes_per_commit_11_12)]
+    f << [ Utils::getAPC(changes_per_commit_11_12)]
     f << ["v1.2.0-v1.3.0"]
-    f << [ Utils::printAPC(changes_per_commit_12_13)]
+    f << [ Utils::getAPC(changes_per_commit_12_13)]
     Utils::printLine(f)
 
     f << ["Number of committers"]
@@ -153,16 +159,16 @@ CSV.open("../output/detailed_results.csv", 'w') do |f|
 
     f << ["Average of commits per user"]
     f << ["v1.1.0-v1.2.0"]
-    f << [ Utils::printACPU(changes_per_user_11_12)]
+    f << [ Utils::getACPU(changes_per_user_11_12)]
     f << ["v1.2.0-v1.3.0"]
-    f << [ Utils::printACPU(changes_per_user_12_13)]
+    f << [ Utils::getACPU(changes_per_user_12_13)]
     Utils::printLine(f)
 
     f << ["Average of LOC changed per user"]
     f << ["v1.1.0-v1.2.0"]
-    f << [ Utils::printALPU(changes_per_user_11_12)]
+    f << [ Utils::getALPU(changes_per_user_11_12)]
     f << ["v1.2.0-v1.3.0"]
-    f << [ Utils::printALPU(changes_per_user_12_13)]
+    f << [ Utils::getALPU(changes_per_user_12_13)]
     Utils::printLine(f)
 
 end
@@ -179,48 +185,48 @@ CSV.open("../output/results.csv", 'w') do |f|
           days_11_12+";"+
           issues_11_12.size.to_s+";"+
           commits_11_12.size.to_s+";"+
-          Utils::printAIPW(issues_per_week_110_120).to_s+";"+
-          Utils::printAIPC(issues_11_12, commits_11_12).to_s+";"+
-          Utils::printAPC(files_per_commit_11_12).to_s+";"+
-          Utils::printAPC(changes_per_commit_11_12).to_s+";"+
+          Utils::getAIPW(issues_per_week_110_120).to_s+";"+
+          Utils::getAIPC(issues_11_12, commits_11_12).to_s+";"+
+          Utils::getAPC(files_per_commit_11_12).to_s+";"+
+          Utils::getAPC(changes_per_commit_11_12).to_s+";"+
           changes_per_user_11_12.size.to_s+";"+
-          Utils::printACPU(changes_per_user_11_12).to_s+";"+
-          Utils::printALPU(changes_per_user_11_12).to_s]
+          Utils::getACPU(changes_per_user_11_12).to_s+";"+
+          Utils::getALPU(changes_per_user_11_12).to_s]
     f << ["DeltaName: v1.1.0-v1.2.0"]
     f << ["NnDays :"+ days_11_12]
     f << ["NbIssues: "+ issues_11_12.size.to_s]
     f << ["NbCommits: "+ commits_11_12.size.to_s]
-    f << ["AvgIssuesPerWk: "+ Utils::printAIPW(issues_per_week_110_120).to_s]
-    f << ["AvgIssuesPerComm: "+ Utils::printAIPC(issues_11_12, commits_11_12).to_s]
-    f << ["AvgFilePerComm: "+  Utils::printAPC(files_per_commit_11_12).to_s]
-    f << ["AvgChangesPerComm: "+  Utils::printAPC(changes_per_commit_11_12).to_s]
+    f << ["AvgIssuesPerWk: "+ Utils::getAIPW(issues_per_week_110_120).to_s]
+    f << ["AvgIssuesPerComm: "+ Utils::getAIPC(issues_11_12, commits_11_12).to_s]
+    f << ["AvgFilePerComm: "+  Utils::getAPC(files_per_commit_11_12).to_s]
+    f << ["AvgChangesPerComm: "+  Utils::getAPC(changes_per_commit_11_12).to_s]
     f << ["NbCommitters: "+  changes_per_user_11_12.size.to_s]
-    f << ["AvgCommitPerUser: "+ Utils::printACPU(changes_per_user_11_12).to_s]
-    f << ["AvgLOCChgPerUser: "+ Utils::printALPU(changes_per_user_11_12).to_s]
+    f << ["AvgCommitPerUser: "+ Utils::getACPU(changes_per_user_11_12).to_s]
+    f << ["AvgLOCChgPerUser: "+ Utils::getALPU(changes_per_user_11_12).to_s]
     Utils.printLine(f)
 
     f << ["V1.2.0-V1.3.0;"+
           days_12_13+";"+
           issues_12_13.size.to_s+";"+
           commits_12_13.size.to_s+";"+
-          Utils::printAIPW(issues_per_week_120_130).to_s+";"+
-          Utils::printAIPC(issues_12_13, commits_12_13).to_s+";"+
-          Utils::printAPC(files_per_commit_12_13).to_s+";"+
-          Utils::printAPC(changes_per_commit_12_13).to_s+";"+
+          Utils::getAIPW(issues_per_week_120_130).to_s+";"+
+          Utils::getAIPC(issues_12_13, commits_12_13).to_s+";"+
+          Utils::getAPC(files_per_commit_12_13).to_s+";"+
+          Utils::getAPC(changes_per_commit_12_13).to_s+";"+
           changes_per_user_12_13.size.to_s+";"+
-          Utils::printACPU(changes_per_user_12_13).to_s+";"+
-          Utils::printALPU(changes_per_user_12_13).to_s]
+          Utils::getACPU(changes_per_user_12_13).to_s+";"+
+          Utils::getALPU(changes_per_user_12_13).to_s]
     f << ["DeltaName: v1.2.0-v1.3.0"]
     f << ["NnDays :"+ days_12_13]
     f << ["NbIssues: "+ issues_12_13.size.to_s]
     f << ["NbCommits: "+ commits_12_13.size.to_s]
-    f << ["AvgIssuesPerWk: "+ Utils::printAIPW(issues_per_week_120_130).to_s]
-    f << ["AvgIssuesPerComm: "+ Utils::printAIPC(issues_12_13, commits_12_13).to_s]
-    f << ["AvgFilePerComm: "+  Utils::printAPC(files_per_commit_12_13).to_s]
-    f << ["AvgChangesPerComm: "+  Utils::printAPC(changes_per_commit_12_13).to_s]
+    f << ["AvgIssuesPerWk: "+ Utils::getAIPW(issues_per_week_120_130).to_s]
+    f << ["AvgIssuesPerComm: "+ Utils::getAIPC(issues_12_13, commits_12_13).to_s]
+    f << ["AvgFilePerComm: "+  Utils::getAPC(files_per_commit_12_13).to_s]
+    f << ["AvgChangesPerComm: "+  Utils::getAPC(changes_per_commit_12_13).to_s]
     f << ["NbCommitters: "+  changes_per_user_12_13.size.to_s]
-    f << ["AvgCommitPerUser: "+ Utils::printACPU(changes_per_user_12_13).to_s]
-    f << ["AvgLOCChgPerUser: "+ Utils::printALPU(changes_per_user_12_13).to_s]
+    f << ["AvgCommitPerUser: "+ Utils::getACPU(changes_per_user_12_13).to_s]
+    f << ["AvgLOCChgPerUser: "+ Utils::getALPU(changes_per_user_12_13).to_s]
 
 end
 

@@ -1,3 +1,5 @@
+#Class that represents commits. Gives easy access to commits' attributes
+
 class Commit
     attr_accessor :sha, :commit, :date, :file_changes, :total_changes, :author, :files
     def initialize(options)
@@ -12,6 +14,7 @@ class Commit
         @author = @commit[:commit][:author][:name]
     end
 
+    #Get total number of LOC changes
     def getTotalChanges(files)
         total = 0
         files.each do |f|
