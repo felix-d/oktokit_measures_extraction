@@ -186,22 +186,16 @@ CSV.open("../output/results.csv", 'w') do |f|
           issues_11_12.size.to_s+";"+
           commits_11_12.size.to_s+";"+
           Utils::getAIPW(issues_per_week_110_120).to_s+";"+
-          Utils::getAIPC(issues_11_12, commits_11_12).to_s+";"+
-          Utils::getAPC(files_per_commit_11_12).to_s+";"+
           Utils::getAPC(changes_per_commit_11_12).to_s+";"+
           changes_per_user_11_12.size.to_s+";"+
-          Utils::getACPU(changes_per_user_11_12).to_s+";"+
           Utils::getALPU(changes_per_user_11_12).to_s]
     f << ["DeltaName: v1.1.0-v1.2.0"]
     f << ["NnDays :"+ days_11_12]
     f << ["NbIssues: "+ issues_11_12.size.to_s]
     f << ["NbCommits: "+ commits_11_12.size.to_s]
     f << ["AvgIssuesPerWk: "+ Utils::getAIPW(issues_per_week_110_120).to_s]
-    f << ["AvgIssuesPerComm: "+ Utils::getAIPC(issues_11_12, commits_11_12).to_s]
-    f << ["AvgFilePerComm: "+  Utils::getAPC(files_per_commit_11_12).to_s]
     f << ["AvgChangesPerComm: "+  Utils::getAPC(changes_per_commit_11_12).to_s]
     f << ["NbCommitters: "+  changes_per_user_11_12.size.to_s]
-    f << ["AvgCommitPerUser: "+ Utils::getACPU(changes_per_user_11_12).to_s]
     f << ["AvgLOCChgPerUser: "+ Utils::getALPU(changes_per_user_11_12).to_s]
     Utils.printLine(f)
 
@@ -210,22 +204,16 @@ CSV.open("../output/results.csv", 'w') do |f|
           issues_12_13.size.to_s+";"+
           commits_12_13.size.to_s+";"+
           Utils::getAIPW(issues_per_week_120_130).to_s+";"+
-          Utils::getAIPC(issues_12_13, commits_12_13).to_s+";"+
-          Utils::getAPC(files_per_commit_12_13).to_s+";"+
           Utils::getAPC(changes_per_commit_12_13).to_s+";"+
           changes_per_user_12_13.size.to_s+";"+
-          Utils::getACPU(changes_per_user_12_13).to_s+";"+
           Utils::getALPU(changes_per_user_12_13).to_s]
     f << ["DeltaName: v1.2.0-v1.3.0"]
     f << ["NnDays :"+ days_12_13]
     f << ["NbIssues: "+ issues_12_13.size.to_s]
     f << ["NbCommits: "+ commits_12_13.size.to_s]
     f << ["AvgIssuesPerWk: "+ Utils::getAIPW(issues_per_week_120_130).to_s]
-    f << ["AvgIssuesPerComm: "+ Utils::getAIPC(issues_12_13, commits_12_13).to_s]
-    f << ["AvgFilePerComm: "+  Utils::getAPC(files_per_commit_12_13).to_s]
     f << ["AvgChangesPerComm: "+  Utils::getAPC(changes_per_commit_12_13).to_s]
     f << ["NbCommitters: "+  changes_per_user_12_13.size.to_s]
-    f << ["AvgCommitPerUser: "+ Utils::getACPU(changes_per_user_12_13).to_s]
     f << ["AvgLOCChgPerUser: "+ Utils::getALPU(changes_per_user_12_13).to_s]
 
 end

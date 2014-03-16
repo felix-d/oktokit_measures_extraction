@@ -1,27 +1,21 @@
 REPOSITORY NAME,fernandezpablo85/scribe-java
 ##################################
-V1.1.0-V1.2.0;107;69;51;4.93;1.35;2.12;35.86;8;6.38;228.63
+V1.1.0-V1.2.0;107;69;51;4.93;35.86;8;228.63
 DeltaName: v1.1.0-v1.2.0
 NnDays :107
 NbIssues: 69
 NbCommits: 51
 AvgIssuesPerWk: 4.93
-AvgIssuesPerComm: 1.35
-AvgFilePerComm: 2.12
 AvgChangesPerComm: 35.86
 NbCommitters: 8
-AvgCommitPerUser: 6.38
 AvgLOCChgPerUser: 228.63
 ##################################
-V1.2.0-V1.3.0;226;93;52;3.1;1.79;2.1;44.73;9;5.78;258.44
+V1.2.0-V1.3.0;226;93;52;3.1;44.73;9;258.44
 DeltaName: v1.2.0-v1.3.0
 NnDays :226
 NbIssues: 93
 NbCommits: 52
 AvgIssuesPerWk: 3.1
-AvgIssuesPerComm: 1.79
-AvgFilePerComm: 2.1
 AvgChangesPerComm: 44.73
 NbCommitters: 9
-AvgCommitPerUser: 5.78
 AvgLOCChgPerUser: 258.44
